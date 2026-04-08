@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmastic Login</title>
+    <link rel="stylesheet" href="/static/css/login_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="video-container">
+        <video class="video-background" autoplay loop muted>
+            <source src="/static/loginvideo.mp4" type="video/mp4">
+            <source src="/static/loginvideo.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+    </div>
+    
+    <div class="login-wrapper">
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <i class="fas fa-prescription-bottle-medical"></i>
+                </div>
+                <h1>Amjad Pharmacy</h1>
+                
+            </div>
+            
+            <div class="welcome-text">
+                <h2>Welcome Back!</h2>
+                <p>Please sign in to continue</p>
+            </div>
+            
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword()">
+                            <i class="fas fa-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>Sign In</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            
+            <div class="footer-text">
+                <p><i class="fas fa-shield-halved"></i> Secure Login</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+</html>

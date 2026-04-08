@@ -1,0 +1,6 @@
+﻿{% set current_report = 'report11' %}
+{% set page_title = 'Highest Earning Payment Method - Reports' %}
+{% set report_heading = "Highest Earning Payment Method" %}
+{% set report_description = "Payment method ranked by generated revenue." %}
+{% set columns = [('Payment Method', 'PaymentMethod'), ('Total Revenue', 'TotalRevenue')] %}
+{% include '_report_table_page.html' %}

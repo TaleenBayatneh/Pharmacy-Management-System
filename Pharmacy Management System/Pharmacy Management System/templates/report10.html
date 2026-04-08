@@ -1,0 +1,6 @@
+﻿{% set current_report = 'report10' %}
+{% set page_title = 'Low Stock and Reorder Frequency - Reports' %}
+{% set report_heading = "Low Stock and Reorder Frequency" %}
+{% set report_description = "Products with low stock and how frequently they are reordered." %}
+{% set columns = [('Product Name', 'ProductName'), ('Current Stock', 'CurrentStock'), ('Reorder Frequency', 'ReorderFrequency')] %}
+{% include '_report_table_page.html' %}

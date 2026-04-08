@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Subscription</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/add_customer.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-prescription-bottle-medical"></i>
+                <span>Amjad Pharmacy</span>
+            </div>
+            <button class="close-sidebar" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="/dashboard2" class="link">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/medicien2" class="link">
+                        <i class="fas fa-pills"></i>
+                        <span>Medicine</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/users2" class="link">
+                        <i class="fas fa-users"></i>
+                        <span>My Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/customer2" class="link">
+                        <i class="fas fa-user-group"></i>
+                        <span>Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/orders2" class="link">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Orders</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="/sales2" class="link">
+                        <i class="fas fa-cash-register"></i>
+                        <span>Sales</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="time-display">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <p id="current-time"></p>
+                    <p id="current-date"></p>
+                </div>
+            </div>
+            <a href="/" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="top-header">
+            <button class="toggle-sidebar" id="toggleSidebar"><i class="fas fa-bars"></i></button>
+            <div class="header-title">
+                <h1><i class="fas fa-sync-alt"></i> Add Subscription</h1>
+                <p>Create a new subscription</p>
+            </div>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">
+                        <i class="fas fa-{% if category == 'error' %}exclamation-circle{% else %}check-circle{% endif %}"></i>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="form-container">
+            <div class="form-card">
+                <div class="card-header">
+                    <i class="fas fa-redo"></i>
+                    <span>Subscription Details</span>
+                </div>
+                <form method="POST" action="{{ url_for('add_subscription2') }}">
+                    <div class="form-body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="CustomerID"><i class="fas fa-user"></i> Customer ID</label>
+                                <input type="number" id="CustomerID" name="CustomerID" required min="1" placeholder="Enter customer ID">
+                            </div>
+                            <div class="form-group">
+                                <label for="ProductID"><i class="fas fa-pills"></i> Product ID</label>
+                                <input type="number" id="ProductID" name="ProductID" required min="1" placeholder="Enter product ID">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="StartDate"><i class="fas fa-calendar-plus"></i> Start Date</label>
+                                <input type="date" id="StartDate" name="StartDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="EndDate"><i class="fas fa-calendar-minus"></i> End Date (Optional)</label>
+                                <input type="date" id="EndDate" name="EndDate">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="RefillInterval"><i class="fas fa-clock"></i> Refill Interval (Days)</label>
+                            <input type="number" id="RefillInterval" name="RefillInterval" required min="1" placeholder="e.g., 30">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <a href="{{ url_for('subscriptions2') }}" class="btn btn-cancel"><i class="fas fa-times"></i> Cancel</a>
+                        <button type="submit" class="btn btn-submit"><i class="fas fa-save"></i> Add Subscription</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById("current-time").textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+            document.getElementById("current-date").textContent = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        const toggleBtn = document.getElementById("toggleSidebar");
+        const closeBtn = document.getElementById("closeSidebar");
+        const sidebar = document.getElementById("sidebar");
+        toggleBtn.addEventListener("click", () => sidebar.classList.toggle("active"));
+        closeBtn.addEventListener("click", () => sidebar.classList.remove("active"));
+    </script>
+</body>
+</html>
