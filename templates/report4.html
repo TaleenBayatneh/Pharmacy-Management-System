@@ -1,0 +1,6 @@
+﻿{% set current_report = 'report4' %}
+{% set page_title = 'Products Expiring Soon - Reports' %}
+{% set report_heading = "Products Expiring Soon" %}
+{% set report_description = "Products expiring in the next 30 days with low quantity." %}
+{% set columns = [('Product Name', 'ProductName'), ('Expiration Date', 'ExpirationDate'), ('Quantity', 'Quantity')] %}
+{% include '_report_table_page.html' %}

@@ -1,0 +1,6 @@
+﻿{% set current_report = 'report2' %}
+{% set page_title = 'Revenue Per Pharmacist - Reports' %}
+{% set report_heading = "Revenue Per Pharmacist" %}
+{% set report_description = "Total sales revenue grouped by pharmacist." %}
+{% set columns = [('Pharmacist Name', 'PharmacistName'), ('Total Revenue', 'TotalRevenue')] %}
+{% include '_report_table_page.html' %}

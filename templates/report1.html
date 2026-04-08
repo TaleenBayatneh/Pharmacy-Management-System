@@ -1,0 +1,6 @@
+﻿{% set current_report = 'report1' %}
+{% set page_title = 'Top 5 Most Sold Products - Reports' %}
+{% set report_heading = "Top 5 Most Sold Products" %}
+{% set report_description = "Best-selling products in the pharmacy." %}
+{% set columns = [('Product Name', 'ProductName'), ('Total Sold', 'TotalSold')] %}
+{% include '_report_table_page.html' %}

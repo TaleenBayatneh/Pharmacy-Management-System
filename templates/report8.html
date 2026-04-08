@@ -1,0 +1,6 @@
+﻿{% set current_report = 'report8' %}
+{% set page_title = 'Total Quantity Ordered Per Pharmacist - Reports' %}
+{% set report_heading = "Total Quantity Ordered Per Pharmacist" %}
+{% set report_description = "Total ordered quantity grouped by pharmacist." %}
+{% set columns = [('Pharmacist Name', 'PharmacistName'), ('Total Quantity Ordered', 'TotalQuantityOrdered')] %}
+{% include '_report_table_page.html' %}

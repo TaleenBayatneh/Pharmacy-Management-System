@@ -1,0 +1,6 @@
+﻿{% set current_report = 'report5' %}
+{% set page_title = 'Quantity Sold By Product Type - Reports' %}
+{% set report_heading = "Quantity Sold By Product Type" %}
+{% set report_description = "Total sold quantity grouped by product type." %}
+{% set columns = [('Product Type', 'ProductType'), ('Total Quantity Sold', 'TotalQuantitySold')] %}
+{% include '_report_table_page.html' %}
